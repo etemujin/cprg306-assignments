@@ -14,27 +14,25 @@ type SortMode = "name" | "category" | "group";
 export default function ItemSort() {
   const [sortBy, setSortBy] = useState<SortMode>("name");
 
-  // Flat sorted list (for name/category modes)
   const sortedItems = useMemo(() => {
     const copy = [...(items as Item[])];
 
     copy.sort((a, b) => {
       if (sortBy === "category") {
-        // category first, then name
+
         const c = a.category.localeCompare(b.category);
         return c !== 0 ? c : a.name.localeCompare(b.name);
       }
-      // default: name sort
+
       return a.name.localeCompare(b.name);
     });
 
     return copy;
   }, [sortBy]);
 
-  // Grouped view (for group mode) — uses reduce + alphabetical sorting
   const grouped = useMemo(() => {
     const groups = (items as Item[]).reduce((acc, item) => {
-      const key = item.category; // keep original category text
+      const key = item.category; 
       acc[key] ??= [];
       acc[key].push(item);
       return acc;
@@ -91,7 +89,6 @@ export default function ItemSort() {
           </button>
         </div>
 
-        {/* GROUPED VIEW */}
         {sortBy === "group" ? (
           <div className="mt-5 rounded-xl border border-white/10 bg-black/20 p-4">
             {grouped.categories.map((cat) => (
@@ -110,7 +107,6 @@ export default function ItemSort() {
             ))}
           </div>
         ) : (
-          /* FLAT LIST VIEW */
           <ul className="mt-5 divide-y divide-white/10 rounded-xl border border-white/10 overflow-hidden">
             {sortedItems.map((item) => (
               <li

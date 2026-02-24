@@ -36,8 +36,8 @@ export default function NewItem({ onAddItem }: NewItemProps) {
   const isFormInvalid = !name || name.trim().length === 0;
 
   return (
-    <div className="max-w-md mx-auto mt-10 p border-gray-200 mb-10">
-      <h2 className="text-3xl font-bold mb-8 text-white-800 text-center tracking-wide">
+    <div className="max-w-md mx-auto mt-10 p-8 bg-white/80 backdrop-blur-lg rounded-2xl shadow-xl border border-gray-200 mb-10">
+      <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center tracking-wide">
         Add New Item
       </h2>
 
@@ -46,7 +46,7 @@ export default function NewItem({ onAddItem }: NewItemProps) {
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-semibold text-white-700 mb-2"
+            className="block text-sm font-semibold text-gray-700 mb-2"
           >
           
             Item Name
